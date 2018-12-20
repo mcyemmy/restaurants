@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div #gmap class="map"></div>
+<div class="info">
+  <p *ngIf="name">{{ name }}</p>
+  <p *ngIf="name">{{ restaurantDetail[0].category }}</p>
+</div>
+<div class="address">
+  <p *ngIf="address">{{ address }}</p>
+  <p *ngIf="formattedAddress">{{ formattedAddress }}</p>
+</div>
+<div class="contact">
+  <p *ngIf="phone">{{ phone }}</p>
+  <p *ngIf="twitter">@{{ twitter }}</p>
+</div>

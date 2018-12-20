@@ -1,0 +1,19 @@
+.map {
+    width:100%;
+    height:180px
+}
+.info {
+    height: 30px;
+    background: #34b379;
+    color: #fff;
+    padding: 20px 10px 20px;
+
+    :nth-child(1) {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    p {
+        margin: 5px;
+    }
+}

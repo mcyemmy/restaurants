@@ -1,0 +1,22 @@
+::ng-deep {
+    .mat-grid-tile {
+        cursor: pointer;
+
+        figure.mat-figure {
+            align-items: flex-end;
+            justify-content: flex-start;
+
+            .info {
+                color: #fff;
+                padding-left: 12px;
+
+                :nth-child(1) {
+                    font-weight: bold;
+                }
+                :nth-child(2) {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
