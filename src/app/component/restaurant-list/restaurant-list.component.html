@@ -1,0 +1,24 @@
+<app-header [hidenElement]="true"></app-header>
+<main>
+  <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
+      <mat-grid-tile 
+        *ngFor="let item of restaurants" 
+        [ngStyle]="{'background': 'url(' + item.backgroundImageURL + ')'}"
+        (click)="gotToDetailsPage(item.name)">
+        <div class="info">
+          <p>{{ item.name }}</p>
+          <p>{{ item.category }}</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+</main>
+
+
+
+
+  <!-- <ul>
+    <li *ngFor="let item of restaurants" [ngStyle]="{'background': 'url(' + item.backgroundImageURL + ')'}" class="restaurant-info">
+      <p>{{ item.name }}</p>
+      <p>{{ item.category }}</p>
+    </li>
+  </ul> -->

@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    height: 65px;
+    padding: 10px;
+    color: #fff; // Could be $white if I used variables.scss
+    font-weight: bold;
+    background: #43e895;
+    align-items: flex-end;
+
+    .navigate img, .directory img {
+        align-self: flex-start;
+    }
+    .navigate {
+        cursor: pointer;
+        width: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        img {
+            width: 10px;
+            height: 20px;
+        }
+    }
+    .directory img {
+        width: 40px;
+        height: 40px;
+    }
+    .banner {
+        width: 70%;
+        text-align: center;
+        align-self: center;
+        margin-top: 25px;
+    }
+    .hide {
+        display: none;
+    }
+}
