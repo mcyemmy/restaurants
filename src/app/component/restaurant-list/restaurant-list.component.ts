@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestaurantService } from '../../service/restaurant.service';
-import { CallApiOnceService } from '../../service/call-Api-Once.service';
+import { LocalStorageService } from '../../service/local-storage.service';
+// import { CallApiOnceService } from '../../service/call-Api-Once.service';
 import { RestaurantInfo } from '../../model/restaurant-info';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +21,8 @@ export class RestaurantListComponent implements OnInit {
 
   constructor( 
     private resService: RestaurantService,
-    private callApiOnceService: CallApiOnceService,
+    private localStorageService: LocalStorageService,
+    // private callApiOnceService: CallApiOnceService,
     private router: Router) { }
 
   ngOnInit() {
@@ -49,10 +51,11 @@ export class RestaurantListComponent implements OnInit {
   }
 
   gotToDetailsPage(event) {
-    this.callApiOnceService.passApiData(this.restaurants)
+    this.localStorageService.setApiData(this.restaurants);
     const path = event.replace(/\s/g, "-").toLowerCase();
     this.router.navigate(['/detail', path])
   }
+  // this.callApiOnceService.passApiData(this.restaurants)
 
   ngOnDestroy() {
     if (this.subscription) {
