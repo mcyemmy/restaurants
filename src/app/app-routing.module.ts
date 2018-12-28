@@ -7,8 +7,8 @@ import { RestaurantDetailComponent } from './component/restaurant-detail/restaur
 const routes: Routes = [
   { path: 'list', component: RestaurantListComponent },
   { path: 'detail/:value', component: RestaurantDetailComponent },
-  { path: '**', redirectTo: '/list' },
-  { path: '', redirectTo: '/list', pathMatch: 'full' }
+  { path: '**', redirectTo: 'list' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 
 @NgModule({

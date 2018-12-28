@@ -56,7 +56,7 @@ export class RestaurantDetailComponent implements OnInit {
       }
       else {
         this.noData = true;
-        this.router.navigate(['/list'])
+        // this.router.navigate(['/list'])
       }
     }, error => {
       console.error(error);
