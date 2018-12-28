@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CallApiOnceService } from '../../service/call-Api-Once.service';
+import { LocalStorageService } from '../../service/local-storage.service';
+// import { CallApiOnceService } from '../../service/call-Api-Once.service';
 import { RestaurantInfo } from '../../model/restaurant-info';
 import { Subscription } from 'rxjs';
 import { } from 'googlemaps';
@@ -27,7 +28,8 @@ export class RestaurantDetailComponent implements OnInit {
   private subscription: Subscription;
 
   constructor(
-    private callApiOnceService: CallApiOnceService,
+    private localStorageService: LocalStorageService,
+    // private callApiOnceService: CallApiOnceService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
@@ -37,10 +39,9 @@ export class RestaurantDetailComponent implements OnInit {
 
   getRestaurantData() {
     // Receive restaurant data from restaurant listing component
-    this.subscription = this.callApiOnceService.getApiData().subscribe( (res: RestaurantInfo[])  => {
-      if (res) {
-        this.restaurants = res;
-
+    
+    this.restaurants = this.localStorageService.getApiData();
+    if (this.restaurants) {
         let restaurantName = this.activatedRoute.snapshot.params.value;
         restaurantName = restaurantName.replace(/-/g, " ").toLowerCase();
         this.restaurantDetail = this.restaurants.filter(item => (item.name).toLowerCase() === restaurantName);
@@ -53,15 +54,16 @@ export class RestaurantDetailComponent implements OnInit {
         this.phone = (this.restaurantDetail[0].contact) ? this.restaurantDetail[0].contact.formattedPhone : '';
         this.twitter = (this.restaurantDetail[0].contact) ? this.restaurantDetail[0].contact.twitter : '';
         this.loadMapData();
-      }
-      else {
+      } else {
         this.noData = true;
         // this.router.navigate(['/list'])
       }
-    }, error => {
-      console.error(error);
-      this.noData = true;
-    })
+      // this.subscription = this.callApiOnceService.getApiData().subscribe( (res: RestaurantInfo[])  => {
+      // this.restaurants = res;
+    // }, error => {
+    //   console.error(error);
+    //   this.noData = true;
+    // })
   }
 
   loadMapData() {
@@ -91,6 +93,7 @@ export class RestaurantDetailComponent implements OnInit {
         }
       })(marker, i));
   }
+  
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
