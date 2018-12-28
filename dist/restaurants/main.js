@@ -44,16 +44,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    {
-        path: '',
-        children: [
-            { path: '', component: _component_restaurant_list_restaurant_list_component__WEBPACK_IMPORTED_MODULE_3__["RestaurantListComponent"] },
-            { path: 'list', component: _component_restaurant_list_restaurant_list_component__WEBPACK_IMPORTED_MODULE_3__["RestaurantListComponent"] },
-            { path: 'detail/:value', component: _component_restaurant_detail_restaurant_detail_component__WEBPACK_IMPORTED_MODULE_4__["RestaurantDetailComponent"] },
-            { path: '**', redirectTo: '/list' },
-            { path: '', redirectTo: '/list', pathMatch: 'full' }
-        ]
-    }
+    { path: 'list', component: _component_restaurant_list_restaurant_list_component__WEBPACK_IMPORTED_MODULE_3__["RestaurantListComponent"] },
+    { path: 'detail/:value', component: _component_restaurant_detail_restaurant_detail_component__WEBPACK_IMPORTED_MODULE_4__["RestaurantDetailComponent"] },
+    { path: '**', redirectTo: 'list' },
+    { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -330,7 +324,7 @@ var RestaurantDetailComponent = /** @class */ (function () {
             }
             else {
                 _this.noData = true;
-                _this.router.navigate(['/list']);
+                // this.router.navigate(['/list'])
             }
         }, function (error) {
             console.error(error);
@@ -551,7 +545,7 @@ var RestaurantService = /** @class */ (function () {
     }
     RestaurantService.prototype.getRestaurants = function () {
         return this.httpClient
-            .get('https://s3.amazonaws.com/br-codingexams/restaurants.json')
+            .get('//s3.amazonaws.com/br-codingexams/restaurants.json')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["throwError"])(err);
         }));
